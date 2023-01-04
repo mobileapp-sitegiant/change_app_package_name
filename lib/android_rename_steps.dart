@@ -27,13 +27,15 @@ class AndroidRenameSteps {
           '\n\nrun " flutter create . " to regenerate missing files.');
       return;
     }
-    String? contents = await readFileAsString(PATH_BUILD_GRADLE);
+    String contents = await readFileAsString(PATH_BUILD_GRADLE) ?? '';
     log('content: $contents');
     var reg =
         RegExp('applicationId "(.*)"', caseSensitive: true, multiLine: false);
 
-    var name = reg.firstMatch(contents!)!.group(1);
-    oldPackageName = name;
+    var name = reg.firstMatch(contents)?.group(1) ?? '';
+    if (name.isNotEmpty) {
+      oldPackageName = name;
+    }
 
     print("Old Package Name: $oldPackageName");
 
