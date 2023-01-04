@@ -28,7 +28,9 @@ class AndroidRenameSteps {
       return;
     }
     String contents = await readFileAsString(PATH_BUILD_GRADLE) ?? '';
-    log('content: $contents');
+    print('path: $PATH_BUILD_GRADLE');
+
+    print('content: $contents');
     var reg =
         RegExp('applicationId "(.*)"', caseSensitive: true, multiLine: false);
 
